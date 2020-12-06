@@ -11,6 +11,7 @@ call vundle#begin()
   Plugin 'mileszs/ack.vim'   
   Plugin 'vim-scripts/taglist.vim'
 call vundle#end()            " required
+
 filetype plugin indent on    " required
 " configure expanding of tabs for various file types
 au BufRead,BufNewFile *.py set expandtab
@@ -18,6 +19,12 @@ au BufRead,BufNewFile *.c set expandtab
 au BufRead,BufNewFile *.h set expandtab
 au BufRead,BufNewFile Makefile* set noexpandtab
 let g:rainbow_active = 1
+
+" --------------------------------------------------------------------------------
+" Python runner
+" --------------------------------------------------------------------------------
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
 " --------------------------------------------------------------------------------
 " configure editor with tabs and nice stuff...
@@ -41,29 +48,12 @@ nnoremap <silent> rh :split <CR>
 nnoremap <silent> rv :vsplit <CR>
 
 " ````````````````````````````````````````````````````````````````````````````
-" Vim-emoji operations
-" ````````````````````````````````````````````````````````````````````````````
-for e in emoji#list()
-      call append(line('$'), printf('%s (%s)', emoji#for(e), e))
-endfor
-set completefunc=emoji#complete
-" %s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g
-
-" ````````````````````````````````````````````````````````````````````````````
 " Tab Operations
 " ````````````````````````````````````````````````````````````````````````````
 nnoremap <C-t>h :tabp<cr>
 nnoremap <C-t>l :tabn<cr>
 nnoremap <C-t>n :tabnew<cr>
 nnoremap <C-t>q :tabclose<cr>
-
-" ````````````````````````````````````````````````````````````````````````````
-" Emoji for git gutter
-" ````````````````````````````````````````````````````````````````````````````
-let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-let g:gitgutter_sign_modified_removed = emoji#for('collision')
 
 " ````````````````````````````````````````````````````````````````````````````
 " Split operations 
@@ -82,6 +72,8 @@ set ruler               " show line and column number
 syntax on               " syntax highlighting
 set showcmd             " show (partial) command in status line
 call plug#begin('~/.vim/plugged')
+    Plug 'junegunn/goyo.vim'
+    Plug 'scrooloose/syntastic'
     Plug 'ryanoasis/vim-devicons'
     Plug 'junegunn/vim-emoji'
     Plug 'junegunn/vim-easy-align'
@@ -94,16 +86,19 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdcommenter' 
     Plug 'prettier/vim-prettier', {
       \ 'do': 'yarn install',
-      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+      \ 'for': ['javascript', 'java', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'airblade/vim-gitgutter'
     Plug 'itchyny/lightline.vim'
+    Plug 'mhinz/vim-signify'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'airblade/vim-gitgutter'
     Plug 'editorconfig/editorconfig-vim'
+    Plug 'tpope/vim-rhubarb'
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-surround'
     Plug 'w0rp/ale'
+    Plug 'valloric/youcompleteme'
+    Plug 'mhinz/vim-signify'
 call plug#end()
