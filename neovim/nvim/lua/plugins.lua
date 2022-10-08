@@ -7,6 +7,7 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
+  use 'norcalli/nvim-colorizer.lua'
   use 'wbthomason/packer.nvim'
   use 'kyazdani42/nvim-web-devicons' -- File icons
   use {
@@ -14,6 +15,7 @@ packer.startup(function(use)
     requires = { 'tjdevries/colorbuddy.nvim' }
   }
 
+  use 'glepnir/lspsaga.nvim' -- LSP UIs
   use 'akinsho/nvim-bufferline.lua' -- Bufferline
   use 'hoob3rt/lualine.nvim' -- Statusline
   use 'L3MON4D3/LuaSnip' -- Snippet
