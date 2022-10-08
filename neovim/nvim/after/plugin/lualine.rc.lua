@@ -39,4 +39,4 @@ lualine.setup {
   }
 }
 
--- TODO => Have to install nerf fonts on icons later on. For more, check symbols above. However, it can be copied from the neovim config video as well. Link - https://www.youtube.com/watch?v=ajmK0ZNcM4Q
+-- TODO => Have to install nerd fonts on icons later on. For more, check symbols above. However, it can be copied from the neovim config video as well. Link - https://www.youtube.com/watch?v=ajmK0ZNcM4Q

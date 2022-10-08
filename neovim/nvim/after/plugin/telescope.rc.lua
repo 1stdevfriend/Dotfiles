@@ -19,6 +19,7 @@ telescope.setup {
     file_browser = {
       theme = 'dropdown',
       -- Disable netrw and use telescope file browser in its place
+      hijack_netrw = true,
       mappings = {
         ['i'] = {
           ['<C-w>'] = function() vim.cmd('normal vbd') end,
@@ -29,11 +30,13 @@ telescope.setup {
           ['/'] = function()
             vim.cmd('startinsert')
           end
-        },
+        }
       }
     }
   }
 }
+
+telescope.load_extension('file_browser')
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', ';f', '<cmd>lua require("telescope.builtin").find_files({ no_ignore = false, hidden = true })<CR>',

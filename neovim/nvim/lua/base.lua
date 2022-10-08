@@ -26,10 +26,14 @@ vim.opt.si = true -- Smart Indent
 vim.opt.wrap = false
 vim.opt.backspace = 'start,eol,indent'
 vim.opt.path:append { '**' } -- Finding files -- Search down into subfolders
-vim.opt.wildignore:append { '*/node_modules/*' } -- Ignore file path TODO => Will ignore python and vscode extensions later on
 
+-- Ignore file path TODO => Will ignore python and vscode extensions later on
+vim.opt.wildignore:append { '*/node_modules/*' }
+vim.opt.mouse = 'a'
+vim.opt.relativenumber = true
+vim.opt.colorcolumn = '80'
 
--- Undercurl 
+-- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4;0m"]])
 -- Incase of iTerm2 this might not work.
@@ -42,4 +46,3 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 
 -- Add asterisks in block comments
 vim.opt.formatoptions:append { 'r' }
-
