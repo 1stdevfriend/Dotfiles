@@ -7,7 +7,9 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
-  use { 'dinhhuy258/git.nvim' } -- Blame and browsing git repo
+  use 'williamboman/mason.nvim' -- Package manager for LSPs
+  use 'williamboman/mason-lspconfig.nvim'
+  use 'dinhhuy258/git.nvim' -- Blame and browsing git repo
   use 'lewis6991/gitsigns.nvim'
   use 'norcalli/nvim-colorizer.lua'
   use 'wbthomason/packer.nvim'
